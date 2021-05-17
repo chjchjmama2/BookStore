@@ -1,5 +1,5 @@
 <?php session_start();
-include './connect_db.php';
+include '../connect_db.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,10 +9,12 @@ include './connect_db.php';
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BookStore Admin</title>
-  <link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
-  <link rel="stylesheet" href="./css/admin.css">
-  <link rel="stylesheet" href="./font-awesome/css/all.css">
-
+  <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../font-awesome/css/all.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script>
     function xoasanpham() {
       confirm("Bạn chắc chắn muốn xóa sản phẩm này ?");
@@ -23,29 +25,29 @@ include './connect_db.php';
 
 <body style="background-color: #F0F0F0;" data-spy="scroll" data-target="#myScrollspy" data-offset="1">
   <?php
-  include './connect_db.php';
-  include './hienidnguoidung.php';
+  include '../connect_db.php';
+  include '../hienidnguoidung.php';
   ?>
   <div class="menu">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
-        <a class="navbar-brand" href="#"><img src="image/logo.png" alt="..." width="100px"></a>
+        <a class="navbar-brand" href="#"><img src="../image/logo.png" alt="..." width="100px"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="index.php">Trang chủ</a>
+              <a class="nav-link active" aria-current="page" href="../index.php">Trang chủ</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./admin.php" onclick="listsanpham();">Sản Phẩm</a>
+              <a class="nav-link" href="../admin.php" onclick="listsanpham();">Sản Phẩm</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./admin/donhang.php" onclick="listdonhang()" ;>Đơn Hàng</a>
+              <a class="nav-link" href="../admin/donhang.php" onclick="listdonhang()" ;>Đơn Hàng</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./admin/quanlyuser.php" onclick="listkhachhang();">Khách Hàng</a>
+              <a class="nav-link" href="../admin/quanlyuser.php" onclick="listkhachhang();">Khách Hàng</a>
             </li>
           </ul>
 
@@ -62,13 +64,13 @@ include './connect_db.php';
     </nav>
   </div>
   <!-- Navbar -->
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
       <div class="col-sm-4 col-lg-3" id="myScrollspy" style="background-color: #F0F0F0;">
         <nav class="navbar navbar-light bg-light flex-column mt-4">
           <nav class="nav nav-pills flex-column">
             <li class="nav-item">
-              <a class="nav-link" href="./admin.php">Danh sách sản phẩm</a>
+            <a class="nav-link" href="../admin.php">Danh sách sản phẩm</a>
               <a class="nav-link" href="./admin/themsanpham.php">Thêm sản phẩm</a>
             </li>
           </nav>
@@ -99,7 +101,7 @@ include './connect_db.php';
             $query = mysqli_query($con, $sql);
 
             if ($query) {
-              header('location: ./admin.php');
+              header('location: ../admin.php');
             } else {
               echo "Lỗi";
             }
@@ -108,7 +110,7 @@ include './connect_db.php';
           <!-- Xử lý thêm sản phẩm -->
 
           <form method="POST" enctype="multipart/form-data">
-            <div class="container-fluid" id="addproduct" style="display: none;">
+            <div class="container-fluid" id="addproduct">
               <div class="card-header">
                 <h2>Thêm sản phẩm</h2>
               </div>
@@ -153,101 +155,3 @@ include './connect_db.php';
               <button name="sbm" class="btn btn-primary" type="submit" style="margin-left :inherit;">Thêm sản phẩm</button>
             </div>
           </form>
-
-          <!-- Xử lý sửa sản phẩm -->
-
-          <!-- Xử lý sửa sản phẩm -->
-
-          <form>
-            <?php
-
-            $sosanphamtrongtrang = 12;
-            $tranghientai = !empty($_GET['page']) ? $_GET['page'] : 1;
-            $offset = ($tranghientai - 1) * $sosanphamtrongtrang;
-
-            $sanpham = mysqli_query($con, "SELECT * FROM products inner join category on products.id_category = category.id_category LIMIT " . $sosanphamtrongtrang . " OFFSET " . $offset);
-            $tongsotrang = mysqli_query($con, "SELECT * FROM products");
-            
-            $tongsosp = mysqli_num_rows($tongsotrang);
-            $sotrang = ceil($tongsosp / $sosanphamtrongtrang);
-
-            ?>
-
-
-
-            <div class="container-fluid" id="cacsanpham">
-              <div class="card">
-                <div class="card-header">
-                  <h2>Danh sách sản phẩm</h2>
-                </div>
-                <div class="card-body">
-                  <table class="table">
-                    <thead class="thead-dark">
-                      <tr>
-                        <th>#</th>
-                        <th>Tên sản phẩm</th>
-                        <th>Hình ảnh</th>
-                        <th>Thể loại</th>
-                        <th>Giá</th>
-                        <th>Sửa</th>
-                        <th>Xóa</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                      
-                      while ($row = mysqli_fetch_assoc($sanpham)) { ?>
-                        <tr>
-                          <td><?php echo $row['id_product']; ?></td>
-                          <td><?php echo $row['name_product']; ?></td>
-                          <td>
-                            <img src="./image/<?php echo $row['image']; ?>" style="width: 222px;">
-                          </td>
-                          <td><?php echo $row['category_name']; ?></td>
-
-                          <td><?php echo $row['price']; ?></td>
-                          <td><a href="admin/suasanpham.php?id=<?php echo $row['id_product']; ?>">Sửa</a></td>
-                          <td><a href="admin/xoasanpham.php?id=<?php echo $row['id_product']; ?>" onclick="xoasanpham()">Xóa</a></td>
-                        </tr>
-                      <?php } ?>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </form>
-
-        </div>
-        <nav aria-label="Page navigation example">
-          <ul class="pagination justify-content-center" id="Pagination">
-            <?php
-
-            if ($tranghientai > 1) { ?>
-              <li class="page-item">
-                <a class="page-link" href="?page=<?= $tranghientai - 1 ?>" tabindex="-1" aria-disabled="true">Trước</a>
-              </li>
-            <?php } ?>
-            <?php for ($num = 1; $num <= $sotrang; $num++) { ?>
-              <?php if ($num != $tranghientai) { ?>
-                <?php if ($num > $tranghientai - 3 && $num < $tranghientai + 3) { ?>
-                  <li class="page-item"><a class="page-link" href="?page=<?= $num ?>"><?= $num ?></a></li>
-                <?php } ?>
-              <?php } else { ?>
-                <li class="page-item"><strong class="page-link" href=""><?= $num ?></strong></li>
-              <?php } ?>
-            <?php } ?>
-            <?php if ($tranghientai < $sotrang) { ?>
-              <li class="page-item">
-                <a class="page-link" href="?page=<?= $tranghientai + 1 ?>">Sau</a>
-              </li>
-            <?php } ?>
-          </ul>
-        </form>
-        </nav>
-      </div>
-    </div>
-    <script type="text/javascript" src="js/bootstrap.js"></script>
-    <script src="js/script.js"></script>
-</body>
-
-</html>

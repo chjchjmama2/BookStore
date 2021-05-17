@@ -35,10 +35,10 @@
               if (mysqli_num_rows($query) > 0) {
                 $result = mysqli_fetch_assoc($query);
                 // Chi co trang thai status la 1 thi moi vao duoc trang admin
-                if (isset($result['status']) && $result['status'] == 0) {
+                if (isset($result['status_admin']) && $result['status_admin'] == 1) {
             ?>
                   <li class="nav-item">
-                    <a class="nav-link" href="admin.php">Quản trị</a>
+                    <a class="nav-link" href="./admin.php">Quản trị</a>
                   </li>
             <?php }
               }
@@ -61,8 +61,8 @@
             </li>
           </ul>
           <form class="d-flex" method="GET">
-            <input class="form-control me-2" name="text" type="Search" placeholder="Search" aria-label="Search" value="<?= isset($_GET['text']) ? $_GET['text'] : ""; ?>">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+            <input class="form-control me-2" name="text" type="Search" placeholder="Tìm kiếm" aria-label="Search" value="<?= isset($_GET['text']) ? $_GET['text'] : ""; ?>">
+            <button class="btn btn-outline-success" type="submit">Tìm</button>
           </form>
         </div>
         <ul class="navbar-nav px-3">
@@ -70,7 +70,7 @@
           if (isset($_SESSION['user'])) {
           ?>
             <li class="nav-item text-nowrap">
-              <a class="nav-link" href="checkusergiohang.php"><i class="fas fa-shopping-cart"></i> Giỏ hàng</a>
+              <a class="nav-link" href="./checkusergiohang.php"><i class="fas fa-shopping-cart"></i> Giỏ hàng</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user"></i> <?= $_SESSION['user']; ?></a>
@@ -79,7 +79,7 @@
                 <li>
                   <hr class="dropdown-divider">
                 </li>
-                <li><a class="dropdown-item" href="dangxuat.php"><i class="fas fa-sign-out-alt"> </i>Đăng Xuất</a></li>
+                <li><a class="dropdown-item" href="./dangxuat.php"><i class="fas fa-sign-out-alt"> </i>Đăng Xuất</a></li>
               </ul>
             </li>
           <?php } else { ?>
@@ -128,9 +128,9 @@
   <!-- Product -->
   <div class="container">
     <div class="row mt-5">
-      <h2 class="list-product-title">Book Shelf</h2>
+      <h2 class="list-product-title">Tủ sách</h2>
       <div class="list-product-subtile">
-        <p>New Book New Life</p>
+        <p>Sách mới, cuộc sống mới</p>
       </div>
       <div class="product-group">
         <div class="row">
@@ -161,13 +161,14 @@
               <div class="col-md-3 col-sm-6 col-12" style="margin: 30px 0px;cursor: pointer; ">
                 <div class="card card-product mb-3" style="width: 18rem;">
                   <img id="anh" src="image/<?= $row['image'] ?>" class="card-img-top" alt="...">
-                  <div class="card-body">
+                  <div class="card-body" style="text-align: center;">
                     <h5 class="card-title product-title"><?= $row['name_product'] ?></h5>
                     <div class="card-text product-price">
                       <!-- <span class="del-price"><?= $row['price'] + 15000 ?> VNĐ</span> -->
+              
                       <span class="new-price"><?= $row['price'] ?></span><strong> VNĐ</strong>
                     </div>
-                    <a class="btn btn-info btn-icon-bg"><i class="fas fa-shopping-cart"></i></a>
+                    <br>
                     <a class="btn btn-outline-info btn-hover" href="chitietsp.php?sanpham=<?= $row['id_product']?>">Xem chi tiết</a>
                   </div>
                 </div>
@@ -195,7 +196,7 @@
       }
       if ($tranghientai > 1) { ?>
         <li class="page-item">
-          <a class="page-link" href="?page=<?= $tranghientai - 1 ?><?= $para ?><?= $para1 ?>" tabindex="-1" aria-disabled="true">Previous</a>
+          <a class="page-link" href="?page=<?= $tranghientai - 1 ?><?= $para ?><?= $para1 ?>" tabindex="-1" aria-disabled="true">Trước</a>
         </li>
       <?php } ?>
       <?php for ($num = 1; $num <= $sotrang; $num++) { ?>
@@ -209,7 +210,7 @@
       <?php } ?>
       <?php if ($tranghientai < $sotrang) { ?>
         <li class="page-item">
-          <a class="page-link" href="?page=<?= $tranghientai + 1 ?><?= $para ?><?= $para1 ?>">Next</a>
+          <a class="page-link" href="?page=<?= $tranghientai + 1 ?><?= $para ?><?= $para1 ?>">Sau</a>
         </li>
       <?php } ?>
     </ul>

@@ -69,13 +69,13 @@
 											$querysql = mysqli_query($con, "SELECT * FROM user WHERE username = '$username' AND passworduser = '$password'");
 											if (mysqli_num_rows($querysql) > 0) {
 												$result = mysqli_fetch_assoc($querysql);
-												// 0 là admin 1 là tài khoản bình thường 2 là tài khoản đang bị vô hiệu hóa
-												if ($result['status'] != 0) {
+											
+												if ($result['status'] != 1) {
 													$_SESSION["user"] = $username;
 													mysqli_close($con);
 													header('location:index.php');
 												} else {
-													echo "<script type='text/javascript'>alert('Tài khoản của bạn đang bị khóa vui lòng liên hệ vói quản trị viên');</script>";
+													echo "<script type='text/javascript'>alert('Tài khoản của bạn đang bị khóa vui lòng liên hệ với quản trị viên');</script>";
 												}
 											} else {
 												echo "<span>*Bạn đã nhập sai tài khoản hoặc mật khẩu</span>";
@@ -141,7 +141,7 @@
 												if (mysqli_num_rows($query) > 0) {
 													echo "Tên đăng nhập đã có người sử dụng";
 												} else {
-													$queryrg = mysqli_query($con, "INSERT INTO user VALUES ('NULL','$usernamerg','$email','$passwordrg','NULL','NULL')");
+													$queryrg = mysqli_query($con, "INSERT INTO user VALUES ('NULL','$usernamerg','$email','$passwordrg',0,0,'NULL')");
 													if (!$queryrg) {
 														echo 'Tạo không thành công!!!';
 													} else {

@@ -6,10 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chi tiết đơn hàng</title>
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
-    <link rel="stylesheet" href="/css/admin.css">
-    <link rel="stylesheet" href="/font-awesome/css/all.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../font-awesome/css/all.css">
+
 
 </head>
 

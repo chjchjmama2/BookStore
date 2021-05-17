@@ -1,5 +1,7 @@
 <?php
+session_start();
 include '../connect_db.php';
+include '../hienidnguoidung.php';
 ?>
 
 
@@ -12,11 +14,9 @@ include '../connect_db.php';
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BookStore Admin</title>
-  <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
-  <link rel="stylesheet" href="/css/admin.css">
-  <link rel="stylesheet" href="/font-awesome/css/all.css">
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../font-awesome/css/all.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -94,16 +94,16 @@ include '../connect_db.php';
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="Main.php">Trang chủ</a>
+              <a class="nav-link active" aria-current="page" href="../index.php">Trang chủ</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" onclick="listsanpham();">Sản Phẩm</a>
+              <a class="nav-link" href="../admin.php" onclick="listsanpham();">Sản Phẩm</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" onclick="listdonhang()" ;>Đơn Hàng</a>
+              <a class="nav-link" href="./donhang.php" onclick="listdonhang()" ;>Đơn Hàng</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" onclick="listkhachhang();">Khách Hàng</a>
+              <a class="nav-link" href="./quanlyuser.php" onclick="listkhachhang();">Khách Hàng</a>
             </li>
           </ul>
 
@@ -113,13 +113,13 @@ include '../connect_db.php';
             </li>
             <li class="nav-item text-nowrap">
               <!-- Nếu chưa đăng nhập thì hiển thị nút Đăng nhập -->
-              <a type="button" class="btn btn-outline-info btn-md btn-rounded btn-navbar waves-effect waves-light" href="dangkyvadangnhap.php">Đăng Xuất</a>
+              <a type="button" class="btn btn-outline-info btn-md btn-rounded btn-navbar waves-effect waves-light" href="../dangxuat.php">Đăng Xuất</a>
             </li>
           </ul>
         </div>
     </nav>
   </div>
-  <div class="container-fluid">
+  <div class="container">
     <h1 class="text-center" style="margin-top: 20px;">Quản lý đơn hàng</h1>
     <table class="table">
       <thead>
@@ -152,23 +152,23 @@ include '../connect_db.php';
             <td><?php echo $row['total']; ?></td>
             <?php $status = $row['status'];
             if ($status == 0) {
-              $trangthai = "<p>Đã giao</p>";
+              $trangthai = '<p style="color: red;">Chưa xử lý</p>';
             } else {
-              $trangthai = "<p>Chưa xử lý</p>";
+              $trangthai = '<p style="color: green;">Đã giao</p>';
             }
 
-            echo "<br> <td>" . $trangthai . " </td>"; ?>
+            echo "<td>" . $trangthai . " </td>"; ?>
 
 
             <td><a href="./indonhang.php?id=<?= $row['id'] ?>">Hiện</a></td>
 
             <?php
             if ($status == 0) {
-              $active = "<a href=./xulygiaohang.php?id=" . $row['id'] . ">Hoàn tác</a>";
-            } else {
               $active = "<a href=./xulychuagiao.php?id=" . $row['id'] . ">Giao hàng</a>";
+            } else {
+              $active = "<a href=./xulygiaohang.php?id=" . $row['id'] . ">Hoàn tác</a>";
             }
-            echo "<br><td>" . $active . "</td>";
+            echo "<td>" . $active . "</td>";
             ?>
 
 

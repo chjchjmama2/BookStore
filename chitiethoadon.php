@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bookstore Đơn hàng</title>
+    <title>Bookstore Chi tiết đơn hàng</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link rel="stylesheet" href="font-awesome/css/all.css">
     <link rel="stylesheet" href="css/admin.css">
@@ -41,7 +41,7 @@
                             if (mysqli_num_rows($query) > 0) {
                                 $result = mysqli_fetch_assoc($query);
                                 // Chi co trang thai status la 0 thi moi hiện trang admin
-                                if (isset($result['status_admin']) && $result['status_admin'] == 1) {
+                                if (isset($result['status']) && $result['status'] == 0) {
                         ?>
                                     <li class="nav-item">
                                         <a class="nav-link" href="admin.php">Quản trị</a>
@@ -102,46 +102,46 @@
         </nav>
     </div>
     <!-- End header -->
-    <!-- Hien don hang khach hang  -->
+    <!-- Orderdetail -->
     <div class="container">
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col" style="width: 10%;">Mã đơn hàng</th>
-                    <th scope="col" style="width: 10%;">Tên khách hàng</th>
-                    <th scope="col" style="width: 10%;">Số điện thoại</th>
-                    <th scope="col" style="width: 20%;">Địa chỉ</th>
-                    <th scope="col" style="width: 10%;">Ghi chú</th>
-                    <th scope="col" style="width: 10%;">Tổng tiền (VNĐ)</th>
-                    <th scope="col" style="width: 5%;">Chi tiết</th>
-                    <th scope="col" style="width: 10%;">Trạng thái</th>
+                    <th scope="col">STT</th>
+                    <th scope="col">Tên sản phẩm</th>
+                    <th scope="col">Hình ảnh</th>
+                    <th scope="col">Số lượng</th>
+                    <th scope="col">Giá tiền (VNĐ)</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                $sqlquery = mysqli_query($con, "SELECT * FROM `orders`");
+                $mahd = isset($_GET['orderdetail']) ? $_GET['orderdetail'] : "";
+                $sqlquery = mysqli_query($con, "SELECT * FROM `order_detail` WHERE `oder_id` = " . $mahd . "");
                 if (!empty($sqlquery)) {
+                    $i = 1;
                     while ($rows = mysqli_fetch_array($sqlquery)) { ?>
                         <tr>
-                            <th scope="row"><?= $rows['id'] ?></th>
-                            <td><?= $rows['name'] ?></td>
-                            <td><?= $rows['phone'] ?></td>
-                            <td><?= $rows['address'] ?></td>
-                            <td><?= $rows['notes'] ?></td>
-                            <td><?= $rows['total'] ?></td>
-                            <td><a href="./chitiethoadon.php?orderdetail=<?= $rows['id'] ?>">Xem</a></td>
-                            <?php if ($rows['status'] == 0) { ?>
-                                <td><strong style="color: red;">Chưa xử lý</strong></td>
-                            <?php } else { ?>
-                                <td><strong style="color: green;">Đã xử lý</strong></td>
-                            <?php } ?>
+                            <th scope="row"><?= $i++ ?></th>
+                            <?php
+                            $idproduct = $rows['product_id'];
+                            $tensp = mysqli_query($con, "SELECT * FROM `products` WHERE `id_product` = " . $idproduct . "");
+                            if (!empty($tensp)) {
+                                while ($name = mysqli_fetch_array($tensp)) {
+                            ?>
+                                    <td><img src="./image/<?= $name['image'] ?>" alt="Sản phẩm" class="img-responsive" width="100"></td>
+                                    <td><?= $name['name_product'] ?></td>
+                            <?php }
+                            } ?>
+                            <td><?= $rows['quanlity'] ?></td>
+                            <td><?= $rows['price'] * $rows['quanlity']?></td>
                         </tr>
                 <?php }
                 } ?>
             </tbody>
         </table>
     </div>
-    <!-- End don hang khach hang-->
+    <!-- Close orderdetail -->
     <script type="text/javascript" src="js/bootstrap.js"></script>
 </body>
 

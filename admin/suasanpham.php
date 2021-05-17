@@ -10,10 +10,9 @@ include '../connect_db.php';
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BookStore Admin</title>
-  <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
-  <link rel="stylesheet" href="/css/admin.css">
-  <link rel="stylesheet" href="/font-awesome/css/all.css">
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../font-awesome/css/all.css">
 
 </head>
 
@@ -26,20 +25,20 @@ include '../connect_db.php';
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="Main.php">Trang chủ</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#" onclick="listsanpham();">Sản Phẩm</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#" onclick="listdonhang()" ;>Đơn Hàng</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#" onclick="listkhachhang();">Khách Hàng</a>
-            </li>
-          </ul>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="../index.php">Trang chủ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../admin.php" onclick="listsanpham();">Sản Phẩm</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./donhang.php" onclick="listdonhang()" ;>Đơn Hàng</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./quanlyuser.php" onclick="listkhachhang();">Khách Hàng</a>
+                        </li>
+                    </ul>
 
           <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">

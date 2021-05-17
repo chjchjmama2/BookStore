@@ -117,7 +117,7 @@
                 </p>
                 <form action="giohang.php?action=add" method="POST">
                   <div class="form-group">
-                    <input type="number" value="1" name="quanlity[<?= $result['id_product'] ?>]">
+                    <input min="1" type="number" value="1" name="quanlity[<?= $result['id_product'] ?>]">
                   </div>
                   <div class="row mt-3 mb-4">
                     <div class="col-md-12 text-center text-md-left text-md-right">

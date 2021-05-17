@@ -10,6 +10,9 @@
   <link rel="stylesheet" href="css/giohang.css">
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="font-awesome/css/all.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 
 <body style="background-color: #F0F0F0;">
@@ -78,7 +81,7 @@
             }
             // tao du lieu cho bang order
 
-            $insertOrder = mysqli_query($con, "INSERT INTO `order` (`id`, `iduser`, `name`, `phone`, `address`, `notes`, `total`, `status`) VALUES (NULL,'" . $iduser . "', '" . $_POST['namenn'] . "', '" . $_POST['phonenn'] . "', '" . $_POST['addressnn'] . "', '" . $_POST['notenn'] . "', '" . $total . "', '0')");
+            $insertOrder = mysqli_query($con, "INSERT INTO `orders` (`id`, `iduser`, `name`, `phone`, `address`, `notes`, `total`, `status`) VALUES (NULL,'" . $iduser . "', '" . $_POST['namenn'] . "', '" . $_POST['phonenn'] . "', '" . $_POST['addressnn'] . "', '" . $_POST['notenn'] . "', '" . $total . "', '0')");
             // hàm insert_id là hàm lấy lại id của câu query phía trên
             $idorder = $con->insert_id;
             $insertString = "";
@@ -93,7 +96,7 @@
             $insertOrder = mysqli_query($con, "INSERT INTO `order_detail` (`id`, `oder_id`, `product_id`, `quanlity`, `price`) VALUES " . $insertString . "");
             if ($insertOrder) {
               unset($_SESSION['cart']);
-              echo "<script type='text/javascript'>alert('Bạn đã đạt hàng thành công');</script>";
+              echo "<script type='text/javascript'>alert('Bạn đã đặt hàng thành công');</script>";
             } else {
               echo "<script type='text/javascript'>alert('Thanh toán thất bại');</script>";
             }
@@ -128,7 +131,7 @@
               if (mysqli_num_rows($query) > 0) {
                 $result = mysqli_fetch_assoc($query);
                 // Chi co trang thai status la 1 thi moi vao duoc trang admin
-                if (isset($result['status']) && $result['status'] == 0) {
+                if (isset($result['status_admin']) && $result['status_admin'] == 1) {
             ?>
                   <li class="nav-item">
                     <a class="nav-link" href="admin.php">Quản trị</a>

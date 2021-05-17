@@ -51,13 +51,11 @@ input[type=number] {
 .listdonhang td {
     font-size: 0.8rem;
     font-weight: 450;
-    color: blue;
 }
 
 .listkhachhang td {
     font-size: 0.8rem;
     font-weight: 450;
-    color: blue;
 }
 
 .switch { 
