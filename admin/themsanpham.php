@@ -12,15 +12,6 @@ include '../connect_db.php';
   <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
   <link rel="stylesheet" href="../css/admin.css">
   <link rel="stylesheet" href="../font-awesome/css/all.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script>
-    function xoasanpham() {
-      confirm("Bạn chắc chắn muốn xóa sản phẩm này ?");
-    }
-  </script>
-
 </head>
 
 <body style="background-color: #F0F0F0;" data-spy="scroll" data-target="#myScrollspy" data-offset="1">
@@ -71,7 +62,7 @@ include '../connect_db.php';
           <nav class="nav nav-pills flex-column">
             <li class="nav-item">
             <a class="nav-link" href="../admin.php">Danh sách sản phẩm</a>
-              <a class="nav-link" href="./admin/themsanpham.php">Thêm sản phẩm</a>
+              <a class="nav-link" href="./themsanpham.php">Thêm sản phẩm</a>
             </li>
           </nav>
         </nav>
@@ -155,3 +146,17 @@ include '../connect_db.php';
               <button name="sbm" class="btn btn-primary" type="submit" style="margin-left :inherit;">Thêm sản phẩm</button>
             </div>
           </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    function xoasanpham() {
+      confirm("Bạn chắc chắn muốn xóa sản phẩm này ?");
+    }
+  </script>
+</body>
+</html>

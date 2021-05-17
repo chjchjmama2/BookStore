@@ -130,3 +130,5 @@ include '../connect_db.php';
       </div>
     </div>
   </div>
+</body>
+</html>

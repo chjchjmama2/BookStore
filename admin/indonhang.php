@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chi tiết đơn hàng</title>
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
-  <link rel="stylesheet" href="../css/admin.css">
-  <link rel="stylesheet" href="../font-awesome/css/all.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../font-awesome/css/all.css">
 
 
 </head>
@@ -54,8 +54,10 @@
             <p><label>Ghi chú : </label><?= $orders[0]['notes'] ?></p>
         </div>
     </div>
-    
-    
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>
