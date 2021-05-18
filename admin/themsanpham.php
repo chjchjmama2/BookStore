@@ -55,7 +55,7 @@ include '../connect_db.php';
     </nav>
   </div>
   <!-- Navbar -->
-  <div class="container-fluid">
+  <div class="container">
     <div class="row">
       <div class="col-sm-4 col-lg-3" id="myScrollspy" style="background-color: #F0F0F0;">
         <nav class="navbar navbar-light bg-light flex-column mt-4">
@@ -75,20 +75,19 @@ include '../connect_db.php';
 
 
           if (isset($_POST['sbm'])) {
-            $id_product = $_POST['id_product'];
             $name_product = $_POST['name_product'];
             $price = $_POST['price'];
 
             if (isset($_FILES['image'])) {
               $file = $_FILES['image'];
               $file_name = $file['name'];
-              move_uploaded_file($file['tmp_name'], 'image/' . $file_name);
+              move_uploaded_file($file['tmp_name'], '../image/' . $file_name);
             }
 
             $describe_product = $_POST['describe_product'];
             $id_category = $_POST['id_category'];
 
-            $sql = "INSERT INTO products(id_product,name_product,price,image,describe_product,id_category) VALUES ('" . $id_product . "','" . $name_product . "','" . $price . "','" . $file_name . "','" . $describe_product . "','" . $id_category . "')";
+            $sql = "INSERT INTO products(id_product,name_product,price,image,describe_product,id_category) VALUES ('NULL','" . $name_product . "','" . $price . "','" . $file_name . "','" . $describe_product . "','" . $id_category . "')";
             $query = mysqli_query($con, $sql);
 
             if ($query) {
@@ -105,10 +104,10 @@ include '../connect_db.php';
               <div class="card-header">
                 <h2>Thêm sản phẩm</h2>
               </div>
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <label for="">ID sản phẩm</label>
                 <input type="text" name="id_product" class="form-control" required>
-              </div>
+              </div> -->
               <div class="form-group">
                 <label for="">Tên sản phẩm</label>
                 <input type="text" name="name_product" class="form-control" required>
