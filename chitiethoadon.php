@@ -41,7 +41,7 @@
                             if (mysqli_num_rows($query) > 0) {
                                 $result = mysqli_fetch_assoc($query);
                                 // Chi co trang thai status la 0 thi moi hiện trang admin
-                                if (isset($result['status']) && $result['status'] == 0) {
+                                if (isset($result['status']) && $result['status_admin'] == 1) {
                         ?>
                                     <li class="nav-item">
                                         <a class="nav-link" href="admin.php">Quản trị</a>

@@ -33,7 +33,7 @@
             } else {
               $_SESSION['cart'][$id] = $quanlity;
             }
-          } else {
+          } else {  
             $_SESSION['cart'][$id] = $quanlity;
           }
         }
