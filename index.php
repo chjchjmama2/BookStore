@@ -99,31 +99,31 @@
 
   <!-- Open content -->
   <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        </div>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="./image/Banner-sách-mới-tháng-6.2018-02.jpg" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="./image/9fb7edf5a0395c3ad377051d210f7d1a75f5a8571.jpg" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="./image/banner-sach.jpg" class="d-block w-100" alt="...">
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"  data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"  data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="./image/Banner-sách-mới-tháng-6.2018-02.jpg" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="./image/9fb7edf5a0395c3ad377051d210f7d1a75f5a8571.jpg" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="./image/banner-sach.jpg" class="d-block w-100" alt="...">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
   <!-- End contend -->
   <!-- Product -->
   <div class="container">
@@ -165,17 +165,17 @@
                     <h5 class="card-title product-title"><?= $row['name_product'] ?></h5>
                     <div class="card-text product-price">
                       <!-- <span class="del-price"><?= $row['price'] + 15000 ?> VNĐ</span> -->
-              
+
                       <span class="new-price"><?= $row['price'] ?></span><strong> VNĐ</strong>
                     </div>
                     <br>
-                    <a class="btn btn-outline-info btn-hover" href="chitietsp.php?sanpham=<?= $row['id_product']?>">Xem chi tiết</a>
+                    <a class="btn btn-outline-info btn-hover" href="chitietsp.php?sanpham=<?= $row['id_product'] ?>">Xem chi tiết</a>
                   </div>
                 </div>
               </div>
             <?php }
           } else { ?>
-            <h2 style="margin: 300px 30px 30px;">  Không tìm thấy sản phẩm</h2>
+            <h2 style="margin: 300px 30px 30px;"> Không tìm thấy sản phẩm</h2>
           <?php } ?>
         </div>
       </div>

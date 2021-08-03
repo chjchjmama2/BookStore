@@ -133,7 +133,7 @@
                             <?php }
                             } ?>
                             <td><?= $rows['quanlity'] ?></td>
-                            <td><?= $rows['price'] * $rows['quanlity']?></td>
+                            <td><?= $rows['price'] * $rows['quanlity'] ?></td>
                         </tr>
                 <?php }
                 } ?>
