@@ -63,7 +63,7 @@
 
           <div class="col-lg-5 text-center text-md-left">
 
-            <h2 class="h2-responsive text-center text-md-left product-name font-weight-bold dark-grey-text mb-1 ml-xl-0 ml-4">Thay Đổi Cuộc Sống Với Nhân Số Học</h2>
+            <h2 class="h2-responsive text-center text-md-left product-name font-weight-bold dark-grey-text mb-1 ml-xl-0 ml-4"><?= $result['name_product'] ?></h2>
             <span class="badge badge-danger product mb-4 ml-xl-0 ml-4">bestseller</span>
             <span class="badge badge-success product mb-4 ml-2">SALE</span>
 
