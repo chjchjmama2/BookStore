@@ -167,7 +167,7 @@ include './connect_db.php';
 
             $sanpham = mysqli_query($con, "SELECT * FROM products inner join category on products.id_category = category.id_category LIMIT " . $sosanphamtrongtrang . " OFFSET " . $offset);
             $tongsotrang = mysqli_query($con, "SELECT * FROM products");
-            
+
             $tongsosp = mysqli_num_rows($tongsotrang);
             $sotrang = ceil($tongsosp / $sosanphamtrongtrang);
 
@@ -195,7 +195,7 @@ include './connect_db.php';
                     </thead>
                     <tbody>
                       <?php
-                      
+
                       while ($row = mysqli_fetch_assoc($sanpham)) { ?>
                         <tr>
                           <td><?php echo $row['id_product']; ?></td>
@@ -242,7 +242,7 @@ include './connect_db.php';
               </li>
             <?php } ?>
           </ul>
-        </form>
+          </form>
         </nav>
       </div>
     </div>
