@@ -61,7 +61,7 @@ include '../connect_db.php';
         <nav class="navbar navbar-light bg-light flex-column mt-4">
           <nav class="nav nav-pills flex-column">
             <li class="nav-item">
-            <a class="nav-link" href="../admin.php">Danh sách sản phẩm</a>
+              <a class="nav-link" href="../admin.php">Danh sách sản phẩm</a>
               <a class="nav-link" href="./themsanpham.php">Thêm sản phẩm</a>
             </li>
           </nav>
@@ -75,17 +75,20 @@ include '../connect_db.php';
 
 
           if (isset($_POST['sbm'])) {
-            $name_product = $_POST['name_product'];
-            $price = $_POST['price'];
+            // $name_product = $_POST['name_product'];
+            $name_product = strip_tags($_POST['name_product']);
+            // $price = $_POST['price'];
+            $price = strip_tags($_POST['price']);
 
             if (isset($_FILES['image'])) {
               $file = $_FILES['image'];
               $file_name = $file['name'];
               move_uploaded_file($file['tmp_name'], '../image/' . $file_name);
             }
-
-            $describe_product = $_POST['describe_product'];
-            $id_category = $_POST['id_category'];
+            // $describe_product = $_POST['describe_product'];
+            $describe_product = strip_tags($_POST['describe_product']);
+            // $id_category = $_POST['id_category'];
+            $id_category = strip_tags($_POST['id_category']);
 
             $sql = "INSERT INTO products(id_product,name_product,price,image,describe_product,id_category) VALUES ('NULL','" . $name_product . "','" . $price . "','" . $file_name . "','" . $describe_product . "','" . $id_category . "')";
             $query = mysqli_query($con, $sql);
@@ -158,4 +161,5 @@ include '../connect_db.php';
     }
   </script>
 </body>
+
 </html>
