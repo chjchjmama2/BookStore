@@ -64,8 +64,8 @@ include './connect_db.php';
   <!-- Navbar -->
   <div class="container">
     <div class="row">
-      <div class="col-sm-4 col-lg-3" id="myScrollspy" style="background-color: #F0F0F0;">
-        <nav class="navbar navbar-light bg-light flex-column mt-4">
+      <div class="col-sm-2 col-lg-2" id="myScrollspy">
+        <nav class="navbar navbar-light flex-column mt-4">
           <nav class="nav nav-pills flex-column">
             <li class="nav-item">
               <a class="nav-link" href="./admin.php">Danh sách sản phẩm</a>
@@ -165,7 +165,7 @@ include './connect_db.php';
             $tranghientai = !empty($_GET['page']) ? $_GET['page'] : 1;
             $offset = ($tranghientai - 1) * $sosanphamtrongtrang;
 
-            $sanpham = mysqli_query($con, "SELECT * FROM products inner join category on products.id_category = category.id_category LIMIT " . $sosanphamtrongtrang . " OFFSET " . $offset);
+            $sanpham = mysqli_query($con, "SELECT * FROM products inner join category on products.id_category = category.id_category ORDER BY products.id_product DESC LIMIT " . $sosanphamtrongtrang . " OFFSET " . $offset);
             $tongsotrang = mysqli_query($con, "SELECT * FROM products");
 
             $tongsosp = mysqli_num_rows($tongsotrang);

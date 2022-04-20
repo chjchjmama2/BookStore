@@ -8,32 +8,8 @@
     margin-top: 3%;
 }
 
-.addproduct {
-    width: 70%;
-    height: 90%;
-    margin-left: 30%;
-    margin-top: -18%;
-    border: 1px solid rgba(0, 0, 0, .125);
-    position: relative;
-    line-height: 40px;
-}
-
-.addproduct p {
-    font-family: sans-serif;
-    margin-left: 5%;
-    font-size: 14px;
-}
-
-.addproduct input[type=text],
-input[type=number],
-input[type=file] {
-    margin-left: 20%;
-}
-
-.addproduct input[type=text],
-input[type=number] {
-    width: 20%;
-    height: 5%;
+#addproduct div {
+    margin: 10px 0;
 }
 
 #xoasanpham {
@@ -58,7 +34,7 @@ input[type=number] {
     font-weight: 450;
 }
 
-.switch { 
+.switch {
     position: relative;
     display: inline-block;
     width: 60px;

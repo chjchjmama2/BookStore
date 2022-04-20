@@ -57,8 +57,8 @@ include '../connect_db.php';
   <!-- Navbar -->
   <div class="container">
     <div class="row">
-      <div class="col-sm-4 col-lg-3" id="myScrollspy" style="background-color: #F0F0F0;">
-        <nav class="navbar navbar-light bg-light flex-column mt-4">
+      <div class="col-sm-2 col-lg-2" id="myScrollspy">
+        <nav class="navbar navbar-light flex-column mt-2">
           <nav class="nav nav-pills flex-column">
             <li class="nav-item">
               <a class="nav-link" href="../admin.php">Danh sách sản phẩm</a>
@@ -67,7 +67,7 @@ include '../connect_db.php';
           </nav>
         </nav>
       </div>
-      <div class="container-fluid" style="width: 100%;">
+      <div class="container">
         <div class="col">
           <!-- Xử lý thêm sản phẩm -->
 
@@ -75,9 +75,9 @@ include '../connect_db.php';
 
 
           if (isset($_POST['sbm'])) {
-            // $name_product = $_POST['name_product'];
-            $name_product = strip_tags($_POST['name_product']);
-            // $price = $_POST['price'];
+            $name_product = $_POST['name_product'];
+            // $name_product = strip_tags($_POST['name_product']);
+            $price = $_POST['price'];
             $price = strip_tags($_POST['price']);
 
             if (isset($_FILES['image'])) {
@@ -85,10 +85,10 @@ include '../connect_db.php';
               $file_name = $file['name'];
               move_uploaded_file($file['tmp_name'], '../image/' . $file_name);
             }
-            // $describe_product = $_POST['describe_product'];
-            $describe_product = strip_tags($_POST['describe_product']);
-            // $id_category = $_POST['id_category'];
-            $id_category = strip_tags($_POST['id_category']);
+            $describe_product = $_POST['describe_product'];
+            // $describe_product = strip_tags($_POST['describe_product']);
+            $id_category = $_POST['id_category'];
+            // $id_category = strip_tags($_POST['id_category']);
 
             $sql = "INSERT INTO products(id_product,name_product,price,image,describe_product,id_category) VALUES ('NULL','" . $name_product . "','" . $price . "','" . $file_name . "','" . $describe_product . "','" . $id_category . "')";
             $query = mysqli_query($con, $sql);
@@ -111,41 +111,50 @@ include '../connect_db.php';
                 <label for="">ID sản phẩm</label>
                 <input type="text" name="id_product" class="form-control" required>
               </div> -->
-              <div class="form-group">
-                <label for="">Tên sản phẩm</label>
-                <input type="text" name="name_product" class="form-control" required>
+              <div class="form-group row">
+                <label for="" class="col-sm-2 col-form-label">Tên sản phẩm</label>
+                <div class="col-sm-10">
+                  <input type="text" name="name_product" required class="form-control">
+                </div>
               </div>
-
-              <div class="form-group">
-                <label for="">Giá sản phẩm</label>
-                <input type="number" min="0" name="price" class="form-control" required>
+              <div class="form-group row">
+                <label for="" class="col-sm-2 col-form-label">Giá sản phẩm</label>
+                <div class="col-sm-10">
+                  <input type="number" min="0" name="price" class="form-control" required>
+                </div>
               </div>
-              <div class="form-group">
-                <label for="" style="margin-top: 2%;">Hình ảnh sản phẩm</label> <br>
-                <input type="file" name="image" style="margin-top: -1222%;">
+              <div class="form-group row">
+                <label for="" class="col-sm-2 col-form-label">Hình ảnh sản phẩm</label>
+                <div class="col-sm-10">
+                  <input type="file" name="image" class="form-control" required>
+                </div>
               </div>
-              <div class="form-group">
-                <label for="">Mô tả sản phẩm</label> <br>
-                <input type="text" name="describe_product" class="form-control">
+              <div class="form-group row">
+                <label for="" class="col-sm-2 col-form-label">Mô tả sản phẩm</label>
+                <div class="col-sm-10">
+                  <input type="text" name="describe_product" class="form-control">
+                </div>
               </div>
-              <div class="form-group" style="width: 25%;">
-                <label for="">Thể loại:</label>
+              <div class="form-group row">
+                <label for="" class="col-sm-2 col-form-label">Thể loại:</label>
                 <?php
                 $sql = "SELECT * FROM category";
                 $query_sql = mysqli_query($con, $sql);
                 ?>
-                <select class="form-control" name="id_category">
-                  <?php
-                  $sql_category = "SELECT * FROM category ORDER BY id_category DESC";
-                  $query_category = mysqli_query($con, $sql_category);
-                  while ($rows = mysqli_fetch_array($query_category)) {
-                  ?>
-                    <option value="<?= $rows['id_category'] ?>"><?= $rows['category_name'] ?></option>
-                  <?php } ?>
-                </select>
+                <div class="col-sm-10">
+                  <select class="form-control" name="id_category">
+                    <?php
+                    $sql_category = "SELECT * FROM category ORDER BY id_category DESC";
+                    $query_category = mysqli_query($con, $sql_category);
+                    while ($rows = mysqli_fetch_array($query_category)) {
+                    ?>
+                      <option value="<?= $rows['id_category'] ?>"><?= $rows['category_name'] ?></option>
+                    <?php } ?>
+                  </select>
+                </div>
               </div>
 
-              <button name="sbm" class="btn btn-primary" type="submit" style="margin-left :inherit;">Thêm sản phẩm</button>
+              <button name="sbm" class="btn btn-primary" type="submit">Thêm sản phẩm</button>
             </div>
           </form>
         </div>
