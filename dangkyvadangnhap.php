@@ -46,15 +46,15 @@
 											$username = $_POST['username'];
 											$password = $_POST['password'];
 											$password = md5($password);
-											$querysql = mysqli_query($con, "SELECT * FROM user WHERE username = '$username' AND passworduser = '$password'");
-											// $querysql = mysqli_prepare($con, "SELECT * FROM user WHERE username = ? AND passworduser = ?");
-											// mysqli_stmt_bind_param($querysql, "si", $username, $password);
-											// mysqli_stmt_execute($querysql);
-											// $res = mysqli_stmt_get_result($querysql);
-											if (mysqli_num_rows($querysql) > 0) {
-												$result = mysqli_fetch_assoc($querysql);
-												// if (mysqli_num_rows($res) > 0) {
-												// 	$result = mysqli_fetch_assoc($res);
+											// $querysql = mysqli_query($con, "SELECT * FROM user WHERE username = '$username' AND passworduser = '$password'");
+											$querysql = mysqli_prepare($con, "SELECT * FROM user WHERE username = ? AND passworduser = ?");
+											mysqli_stmt_bind_param($querysql, "si", $username, $password);
+											mysqli_stmt_execute($querysql);
+											$res = mysqli_stmt_get_result($querysql);
+											// if (mysqli_num_rows($querysql) > 0) {
+											// 	$result = mysqli_fetch_assoc($querysql);
+											if (mysqli_num_rows($res) > 0) {
+												$result = mysqli_fetch_assoc($res);
 
 												if ($result['status'] != 1) {
 													$_SESSION["user"] = $username;
